@@ -1,0 +1,455 @@
+/* General Styles */
+body, html {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Template font */
+    background-color: #f4f4f4; /* Template background */
+    /* overflow: hidden; Removed to allow scrolling for long content like quiz */
+    color: #333;
+    display: flex; /* Keep for main/footer layout */
+    flex-direction: column; /* Keep for main/footer layout */
+}
+
+/* Removed old header style as header element is removed */
+
+main {
+    flex-grow: 1; /* Keep for main/footer layout */
+    padding: 20px;
+    width: 90%;
+    max-width: 1200px; /* Max width for content */
+    margin: 20px auto; /* Center main content */
+    /* background-color: #fff; Removed for transparency */
+    /* box-shadow: 0 0 10px rgba(0,0,0,0.1); Removed as it might look odd on transparent main */
+    position: relative; /* Establish stacking context */
+    z-index: 5;        /* Ensure main content is above background keywords */
+}
+
+section {
+    padding: 20px;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #eee; /* Separator for sections if multiple are visible for testing */
+}
+
+section:last-child {
+    border-bottom: none;
+}
+
+h2 {
+    color: #A8322D; /* Another shade of red/brown */
+    margin-bottom: 1rem;
+}
+
+button {
+    background-color: #BF4904; /* Orangey-brown, like a 'gratton'? */
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 10px 5px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #A8322D; /* Darken on hover */
+}
+
+select, input[type="text"], input[type="radio"] {
+    padding: 8px;
+    margin: 5px 0 15px 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+label {
+    margin-right: 10px;
+}
+
+/* Utility Classes */
+.hidden {
+    display: none !important; /* Important to override other display properties */
+}
+
+/* Landing Section Specific (Initial Placeholder) */
+#landing-section {
+    position: relative; /* For positioning background keywords */
+    /* min-height: 300px; Adjusted by template's .container logic */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh; /* From template .container style */
+    padding: 20px; /* From template .container style */
+    box-sizing: border-box; /* From template .container style */
+    text-align: center; /* From template .container style */
+}
+
+#background-keywords-container {
+    position: fixed;   /* Cover the entire viewport */
+    top: 0;
+    left: 0;
+    width: 100vw;      /* Full viewport width */
+    height: 100vh;     /* Full viewport height */
+    overflow: hidden;
+    z-index: 0;        /* Behind main content, header, footer but above body default bg */
+    background-color: #f4f4f4; /* Fallback background, same as body's original */
+}
+
+.animated-keyword {
+    position: absolute; /* Already set by JS, but good for clarity */
+    user-select: none; /* Prevent text selection */
+    pointer-events: none; /* So they don't interfere with clicks on content below if any */
+    /* Colors and font sizes are set by JS */
+    /* transition for mouse interaction is set by JS */
+    white-space: nowrap; /* Prevent words from wrapping */
+}
+
+.landing-content h1 { /* Style for the new h1 inside landing content */
+    font-size: 2.8em; /* Template h1 style */
+    margin-bottom: 15px;
+    color: #2c3e50; /* Template h1 color */
+    font-weight: normal; /* Template h1 often doesn't specify, so reset or set as needed */
+}
+
+.landing-content {
+    position: relative; 
+    z-index: 1; /* Ensure it's above background-keywords-container if it were a sibling */
+    padding: 20px; /* Keep some padding */
+    /* border-radius: 8px; Not in template's .container direct style */
+    color: #333; 
+}
+
+#cta-text { /* Now a p.cta-text */
+    font-size: 1.3em; /* Template .cta-text style */
+    margin-bottom: 30px;
+    max-width: 600px;
+    line-height: 1.6;
+    color: #555; /* Template .cta-text color */
+    min-height: 50px; /* Keep to prevent layout shift */
+}
+
+.search-form { /* Styles from template .search-form */
+    background-color: #ffffff;
+    padding: 30px 40px;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px; /* Existing margin from .name-selector-container */
+}
+
+.search-form label { /* Styles from template .search-form label */
+    font-size: 1.1em;
+    margin-bottom: 12px;
+    color: #444;
+}
+
+#name-select { /* Our ID, styled like template's #ancestor-select */
+    padding: 12px 15px;
+    font-size: 1em;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    min-width: 250px;
+    margin-bottom: 25px;
+    box-sizing: border-box;
+    cursor: pointer;
+}
+
+#submit-name { /* Our ID, styled like template's #search-button */
+    padding: 12px 30px;
+    font-size: 1.1em;
+    background-color: #c0392b; /* Template button color */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-weight: bold;
+}
+
+#submit-name:hover {
+    background-color: #a93226; /* Template button hover color */
+}
+
+/* Questionnaire Section */
+#questionnaire-section {
+    position: relative; /* For skip button positioning */
+}
+
+#questionnaire-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px; /* Space between question cards */
+}
+
+.question-card {
+    background-color: #f9f9f9; /* Light background for card */
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    text-align: left;
+}
+
+.question-title {
+    display: block; /* Make it take full width */
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #8C1C13; /* Theme color for question title */
+    margin-bottom: 15px;
+}
+
+.answers-container {
+    display: flex;
+    flex-direction: column;
+    gap: 5px; /* Reduced space between answer options */
+}
+
+.answer-option {
+    display: flex; /* Align radio button and label on the same line */
+    align-items: center; /* Vertically align items in the center */
+    padding: 6px 8px; /* Reduced vertical padding */
+    border-radius: 4px;
+    transition: background-color 0.2s ease-in-out;
+}
+
+.answer-option:hover {
+    background-color: #e9e9e9; /* Slight hover effect for answer option */
+}
+
+.answer-option input[type="radio"] {
+    margin-right: 10px; /* Space between radio and label */
+    accent-color: #BF4904; /* Theme color for the radio button itself */
+}
+
+.answer-option label {
+    font-weight: normal; /* Override general label bolding if any */
+    margin-bottom: 0; /* Override general label margin if any */
+    flex-grow: 1; /* Allow label to take remaining space */
+}
+
+
+/* Console Section Specific (Initial Placeholder) */
+#console-section {
+    position: relative; /* For skip button positioning */
+    background-color: #222; /* Dark background for console */
+    color: #0f0; /* Green text */
+    font-family: 'Courier New', Courier, monospace;
+    border-radius: 5px;
+}
+#console-section h2 {
+    color: #0f0; /* Green title for console */
+}
+#console-output {
+    white-space: pre-wrap; /* Preserve whitespace and newlines */
+    word-wrap: break-word; /* Break long lines */
+    height: 300px; /* Fixed height */
+    overflow-y: auto; /* Scroll for overflow */
+    background-color: #111; /* Slightly darker background for output area */
+    padding: 10px;
+    border-radius: 3px;
+    text-align: left;
+}
+
+/* Reveal Section (Modal-like - Initial Placeholder) */
+#reveal-section {
+    /* For a modal, we might overlay it later with JS */
+    background-color: rgba(0,0,0,0.5); /* Semi-transparent background */
+    position: fixed; /* Or absolute, depending on desired effect */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex; /* Will be toggled by JS */
+    justify-content: center;
+    align-items: center;
+    z-index: 1000; /* Ensure it's on top */
+}
+
+.modal-content {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    width: 80%;
+    max-width: 600px;
+    text-align: center;
+}
+
+#ancestor-images-container img {
+    max-width: 150px; /* Adjust as needed */
+    height: auto;
+    margin: 10px;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    cursor: pointer; /* Indicate images are clickable */
+    transition: transform 0.2s ease-in-out;
+}
+
+#ancestor-images-container img:hover {
+    transform: scale(1.1); /* Slight zoom on hover for thumbnails */
+}
+
+#ancestor-description {
+    margin-top: 20px;
+    padding: 10px;
+    border-top: 1px solid #eee; /* Optional separator */
+    font-style: italic;
+    color: #555;
+    text-align: left; /* Or center, depending on desired look */
+    line-height: 1.5;
+}
+
+
+/* Image Viewer Modal Styles */
+#image-viewer-modal {
+    position: fixed;
+    z-index: 2000; /* Higher than reveal section modal */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.9); /* Darker overlay */
+    display: flex; /* Use flex to center content easily if needed, though not strictly for this layout */
+    justify-content: center;
+    align-items: center;
+}
+
+.image-viewer-content {
+    margin: auto;
+    display: block;
+    max-width: 80%;
+    max-height: 80vh; /* Ensure it fits viewport height */
+    animation-name: zoomInModal; /* Renamed for clarity if other zooms exist */
+    animation-duration: 0.4s;
+    opacity: 1;
+    transition: opacity 0.2s ease-in-out; /* For fade effect */
+}
+
+.image-viewer-content.image-fade-out {
+    opacity: 0;
+}
+
+@keyframes zoomInModal {
+    from {transform:scale(0)}
+    to {transform:scale(1)}
+}
+
+.close-image-viewer {
+    position: absolute;
+    top: 20px;
+    right: 35px;
+    color: #f1f1f1;
+    font-size: 40px;
+    font-weight: bold;
+    transition: 0.3s;
+    cursor: pointer;
+}
+
+.close-image-viewer:hover,
+.close-image-viewer:focus {
+    color: #bbb;
+    text-decoration: none;
+}
+
+/* Navigation arrows */
+.prev-image, .next-image {
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    width: auto;
+    padding: 16px;
+    margin-top: -30px; /* Adjust based on arrow size */
+    color: white;
+    font-weight: bold;
+    font-size: 28px;
+    transition: 0.4s ease;
+    border-radius: 0 3px 3px 0;
+    user-select: none;
+    background-color: rgba(0,0,0,0.3);
+}
+
+.prev-image {
+    left: 0;
+    border-radius: 3px 0 0 3px;
+}
+
+.next-image {
+    right: 0;
+    border-radius: 0 3px 3px 0;
+}
+
+.prev-image:hover, .next-image:hover {
+    background-color: rgba(0,0,0,0.6);
+}
+
+
+footer {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 1rem 0;
+    margin-top: auto; 
+    position: relative; 
+    z-index: 10; 
+}
+
+.skip-button {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    padding: 6px 12px;
+    font-size: 0.85em;
+    background-color: #95a5a6; /* A softer, neutral grey */
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    z-index: 15; /* Ensure it's above other section content but below modals */
+}
+
+.skip-button:hover {
+    background-color: #7f8c8d; /* Darker grey on hover */
+}
+
+/* Responsive Design (Basic Example) */
+@media (max-width: 768px) {
+    /* Old header h1 style removed */
+    .landing-content h1 { /* Adjust new h1 for mobile */
+        font-size: 2em;
+    }
+    #cta-text { /* Adjust new cta-text for mobile */
+        font-size: 1.1em;
+    }
+    .search-form { /* Adjust new search-form for mobile */
+        padding: 20px;
+        width: 90%;
+    }
+    #name-select { /* Adjust new select for mobile */
+        min-width: 100%;
+    }
+    main { /* Keep main responsive adjustments */
+        width: 95%;
+        padding: 10px;
+    }
+    button {
+        font-size: 14px;
+        padding: 8px 15px;
+    }
+    #cta-text {
+        font-size: 1.5rem;
+    }
+    .modal-content {
+        width: 90%;
+    }
+}

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ton Ancêtre Mâchonnait !</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="background-keywords-container">
+        <!-- Les mots-clés lyonnais animés seront générés ici par JavaScript -->
+    </div>
+    <!-- <header> removed -->
+
+    <main>
+        <!-- Section 1: Landing Page -->
+        <section id="landing-section">
+            <div class="landing-content">
+                <h1>Ton ancêtre Mâchonnait</h1> <!-- Title moved and text updated -->
+                <p id="cta-text" class="cta-text">Prêt à déterrer tes racines de vrai Gône ?</p> <!-- Changed h2 to p, added class -->
+                <div class="search-form"> <!-- search-form wrapper -->
+                    <label for="name-select">Choisis ton nom :</label>
+                    <select name="names" id="name-select">
+                        <!-- Les options seront peuplées par JavaScript -->
+                    </select>
+                    <button id="submit-name">Valider et sonder le passé !</button>
+                </div> <!-- .name-selector-container div removed -->
+            </div>
+        </section>
+
+        <!-- Section 2: Questionnaire Ludique (initialement cachée) -->
+        <section id="questionnaire-section" class="hidden">
+            <button id="skip-questionnaire-button" class="skip-button">Passer le questionnaire &raquo;</button>
+            <h2>Questionnaire Mâchonique</h2>
+            <form id="questionnaire-form">
+                <!-- Les questions seront injectées ici par JavaScript -->
+            </form>
+            <button id="submit-questionnaire">Analyser mes réponses ancestrales</button>
+        </section>
+
+        <!-- Section 3: Fausse Console de Recherche (initialement cachée) -->
+        <section id="console-section" class="hidden">
+            <button id="skip-console-button" class="skip-button">Voir le résultat directement &raquo;</button>
+            <h2>Recherche en cours dans les archives mâchoniques...</h2>
+            <pre id="console-output"></pre>
+        </section>
+
+        <!-- Section 4: Révélation de l'Ancêtre (initialement cachée) -->
+        <section id="reveal-section" class="hidden">
+            <div class="modal-content">
+                <h2 id="reveal-message">Félicitations ! Nous avons retrouvé la trace d'un de tes glorieux ancêtres mâchonneur !</h2>
+                <button id="discover-ancestor">Découvrir mon ancêtre !</button>
+                <div id="ancestor-images-container">
+                    <!-- Les images de l'ancêtre seront affichées ici -->
+                </div>
+                <div id="ancestor-description" class="hidden">
+                    <!-- Description de l'ancêtre ira ici -->
+                </div>
+                <button id="return-to-landing-button" class="hidden">Recommencer une nouvelle recherche</button>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Les Gones Codeurs - Tous droits réservés (ou presque)</p>
+    </footer>
+
+    <!-- Image Viewer Modal -->
+    <div id="image-viewer-modal" class="hidden">
+        <span class="close-image-viewer">&times;</span>
+        <img class="image-viewer-content" id="full-ancestor-image">
+        <a class="prev-image">&#10094;</a>
+        <a class="next-image">&#10095;</a>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
